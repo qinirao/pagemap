@@ -1,0 +1,4 @@
+1.
+make -C /home/huawei/linaro/qemu/linux-linaro-lng/ ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- M=`pwd` modules
+2.
+mknod test c 42 0
