@@ -71,7 +71,12 @@ static ssize_t device_write(struct file *filp, const char __user *buf, size_t co
     if (res == 1) {
         pr_err("Got page\n");
         /* Do something with it */
+	printk("lg test 1 page %p phy=%p\n",page,page_to_phys(page));
+	memset(addrstr, 0 , sizeof(addrstr));
+	sprintf(addrstr,"%x",page_to_phys(page));
+	copy_to_user(buf, addrstr, sizeof(addrstr));
         my_page_address = kmap(page);
+	printk("lg test 2 phy=%p\n",page_to_phys(page));
         strcpy (my_page_address, "Hello, is it me you're looking for?\n");
         pr_err("Got address %p and user told me it was %lx\n",my_page_address, uaddr);
         pr_err("Wrote: %s", my_page_address);
